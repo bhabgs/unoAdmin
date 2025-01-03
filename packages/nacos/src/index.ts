@@ -1,13 +1,15 @@
 import { NacosNamingClient, NacosConfigClient } from 'nacos';
 import * as yml from 'yaml';
-import config from './config';
+import nacosConfig from './nacosConfig';
+
+const { port, host, cacheTime } = nacosConfig;
 
 const logger = console;
 /**
  * Constants
  */
 // Nacos 服务地址
-const serverList = config.nacos.host + ':' + config.nacos.port;
+export const serverList = host + ':' + port;
 
 const client = new NacosNamingClient({
   serverList,
@@ -17,11 +19,13 @@ const client = new NacosNamingClient({
 
 export const startNacos = async (serverName: string) => {
   let serverPort = 3000;
+  let api = '/api';
   try {
     const nc = await getNacosConfig({
       name: 'server.yaml',
     });
     serverPort = nc.servers[serverName].port;
+    api = nc.servers[serverName].api;
     await client.ready();
     await client.registerInstance(serverName, {
       ip: 'localhost',
@@ -34,7 +38,7 @@ export const startNacos = async (serverName: string) => {
   } catch (error) {
     console.log('startNacos error :>> ', error);
   }
-  return { port: serverPort };
+  return { port: serverPort, api };
 };
 
 // 获取配置
@@ -58,8 +62,7 @@ export const getNacosConfig = async ({
   // 如果缓存中没有或者缓存过期
   if (
     !nacosConfigMap.has(name) ||
-    tim - (nacosConfigMap.get(name)?.time || 0) >
-      1000 * 60 * (config.nacos.cacheTime || 1)
+    tim - (nacosConfigMap.get(name)?.time || 0) > 1000 * 60 * (cacheTime || 1)
   ) {
     // 获取配置
     const config = await clientConfig.getConfig(name, group);

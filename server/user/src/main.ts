@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { startNacos } from './Nacos';
+import { startNacos } from '@uno/nacos';
 
 async function bootstrap() {
   const { port } = await startNacos('user');

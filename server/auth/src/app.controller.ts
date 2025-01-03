@@ -1,5 +1,4 @@
-import { Controller, Post } from '@nestjs/common';
-import { MessagePattern } from '@nestjs/microservices';
+import { Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller('auth')
@@ -7,12 +6,10 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Post()
-  @MessagePattern('')
   login(): string {
     return this.appService.getHello();
   }
-
-  @MessagePattern('oauth')
+  @Get()
   getAaa(): string {
     return 'oauth';
   }

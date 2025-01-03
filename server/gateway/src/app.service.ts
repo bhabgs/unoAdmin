@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { createProxyMiddleware, RequestHandler } from 'http-proxy-middleware';
 import { NacosNamingClient } from 'nacos';
-import { serverList, getNacosConfig } from './Nacos';
+import { serverList, getNacosConfig } from '@uno/nacos';
 import { IncomingMessage, ServerResponse } from 'http';
 
 @Injectable()
@@ -88,8 +88,6 @@ export class AppService {
       ':' +
       this.serviceList.map[serviceName][0].port +
       message;
-    console.log('target :>> ', target);
-
     try {
       const proxy = createProxyMiddleware({
         target,
