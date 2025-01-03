@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const str =
+        '好的，以下是一个三行三列布局的数据结构示例，每个卡片都有标题和内容，并且样式已经设置好以确保布局美观整齐：\n\n```json\n{\n  "type": "container",\n  "style": {\n    "padding": "20px",\n    "backgroundColor": "#f5f5f5"\n  },\n  "children": [\n    {\n      "type": "row",\n      "style": {\n        "display": "flex",\n        "gap": "20px",\n        "marginBottom": "20px"\n      },\n      "children": [\n        {\n          "type": "card",\n          "title": "卡片1",\n          "content": "这是第一个卡片的内容",\n          "style": {\n            "flex": 1,\n            "padding": "10px",\n            "boxShadow": "0 2px 4px rgba(0,0,0,0.1)",\n            "borderRadius": "4px"\n          }\n        },\n        {\n          "type": "card",\n          "title": "卡片2",\n          "content": "这是第二个卡片的内容",\n          "style": {\n            "flex": 1,\n            "padding": "10px",\n            "boxShadow": "0 2px 4px rgba(0,0,0,0.1)",\n            "borderRadius": "4px"\n          }\n        },\n        {\n          "type": "card",\n          "title": "卡片3",\n          "content": "这是第三个卡片的内容",\n          "style": {\n            "flex": 1,\n            "padding": "10px",\n            "boxShadow": "0 2px 4px rgba(0,0,0,0.1)",\n            "borderRadius": "4px"\n          }\n        }\n      ]\n    },\n    {\n      "type": "row",\n      "style": {\n        "display": "flex",\n        "gap": "20px",\n        "marginBottom": "20px"\n      },\n      "children": [\n        {\n          "type": "card",\n          "title": "卡片4",\n          "content": "这是第四个卡片的内容",\n          "style": {\n            "flex": 1,\n            "padding": "10px",\n            "boxShadow": "0 2px 4px rgba(0,0,0,0.1)",\n            "borderRadius": "4px"\n          }\n        },\n        {\n          "type": "card",\n          "title": "卡片5",\n          "content": "这是第五个卡片的内容",\n          "style": {\n            "flex": 1,\n            "padding": "10px",\n            "boxShadow": "0 2px 4px rgba(0,0,0,0.1)",\n            "borderRadius": "4px"\n          }\n        },\n        {\n          "type": "card",\n          "title": "卡片6",\n          "content": "这是第六个卡片的内容",\n          "style": {\n            "flex": 1,\n            "padding": "10px",\n            "boxShadow": "0 2px 4px rgba(0,0,0,0.1)",\n            "borderRadius": "4px"\n          }\n        }\n      ]\n    },\n    {\n      "type": "row",\n      "style": {\n        "display": "flex",\n        "gap": "20px",\n        "marginBottom": "20px"\n      },\n      "children": [\n        {\n          "type": "card",\n          "title": "卡片7",\n          "content": "这是第七个卡片的内容",\n          "style": {\n            "flex": 1,\n            "padding": "10px",\n            "boxShadow": "0 2px 4px rgba(0,0,0,0.1)",\n            "borderRadius": "4px"\n          }\n        },\n        {\n          "type": "card",\n          "title": "卡片8",\n          "content": "这是第八个卡片的内容",\n          "style": {\n            "flex": 1,\n            "padding": "10px",\n            "boxShadow": "0 2px 4px rgba(0,0,0,0.1)",\n            "borderRadius": "4px"\n          }\n        },\n        {\n          "type": "card",\n          "title": "卡片9",\n          "content": "这是第九个卡片的内容",\n          "style": {\n            "flex": 1,\n            "padding": "10px",\n            "boxShadow": "0 2px 4px rgba(0,0,0,0.1)",\n            "borderRadius": "4px"\n          }\n        }\n      ]\n    }\n  ]\n}\n```\n\n这个数据结构定义了一个包含三行三列卡片的布局，每个卡片都有标题和内容，并且样式已经设置好以确保布局美观整齐。每行之间有一定的间距，每个卡片之间也有一定的间距。';
+      const extractJson = (input) => {
+        const match = input.match(/```json\n([\s\S]*?)\n```/);
+        return match ? JSON.parse(match[1]) : null;
+      };
+
+      const jsonData = extractJson(str);
+      console.log(jsonData);
+    </script>
+  </head>
+  <body></body>
+</html>

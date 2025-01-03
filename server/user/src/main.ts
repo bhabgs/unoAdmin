@@ -1,23 +1,12 @@
 import { NestFactory } from '@nestjs/core';
-import { Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';
-import { startNacos } from './nacos';
-import config from './config';
+import { startNacos } from './Nacos';
 
 async function bootstrap() {
-  const app = await NestFactory.createMicroservice(AppModule, {
-    transport: Transport.TCP,
-    options: {
-      port: config.servers.user.port,
-    },
-  });
+  const { port } = await startNacos('user');
 
-  startNacos({
-    ip: 'localhost',
-    port: config.servers.user.port,
-    serverName: 'user',
-  });
+  const app = await NestFactory.create(AppModule);
 
-  await app.listen();
+  await app.listen(port);
 }
 bootstrap();
